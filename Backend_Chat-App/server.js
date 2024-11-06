@@ -1,8 +1,8 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const chats = require('./data/data')
-const connectDB = require('./config/database')
+const chats = require('./src/data/Data')
+const connectDB = require('./src/config/database')
 
 dotenv.config()
 connectDB()
