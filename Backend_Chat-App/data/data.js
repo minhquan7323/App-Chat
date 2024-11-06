@@ -1,4 +1,3 @@
-// data/data.js
 const chats = [
     {
         isGroupChat: false,
