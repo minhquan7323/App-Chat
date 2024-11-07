@@ -1,9 +1,12 @@
-import React from 'react'
-import { Box, Container, Text } from '@chakra-ui/react'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import Login from '../components/Authentication/Login'
-import Signup from '../components/Authentication/Signup'
+import React, { useState } from 'react';
+import { Box, Container, Text } from '@chakra-ui/react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import Login from '../components/Authentication/Login';
+import Signup from '../components/Authentication/Signup';
+
 const HomePage = () => {
+    const [selectedTab, setSelectedTab] = useState(0);
+
     return (
         <Container maxW="xl" centerContent>
             <Box
@@ -27,7 +30,7 @@ const HomePage = () => {
                 borderWidth="1px"
             >
                 <Text fontSize="4xl">
-                    <Tabs isFitted colorScheme='green' variant='enclosed'>
+                    <Tabs isFitted colorScheme='green' variant='enclosed' index={selectedTab} onChange={setSelectedTab}>
                         <TabList>
                             <Tab>Login</Tab>
                             <Tab>Sign Up</Tab>
@@ -37,14 +40,14 @@ const HomePage = () => {
                                 <Login />
                             </TabPanel>
                             <TabPanel>
-                                <Signup />
+                                <Signup setSelectedTab={setSelectedTab} />
                             </TabPanel>
                         </TabPanels>
                     </Tabs>
                 </Text>
             </Box>
         </Container>
-    )
-}
+    );
+};
 
-export default HomePage
+export default HomePage;
