@@ -1,10 +1,9 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const chats = require('./data/Data')
 const connectDB = require('./config/database')
 const routes = require('./routes')
-const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+const { notFound, ErrorHandler } = require('./middleware/ErrorMiddleware')
 
 dotenv.config()
 const app = express()
@@ -20,7 +19,7 @@ connectDB()
 routes(app)
 
 app.use(notFound)
-app.use(errorHandler)
+app.use(ErrorHandler)
 
 app.listen(port, () => {
     console.log('Server is running on port', port)

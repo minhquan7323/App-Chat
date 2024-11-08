@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const signUpUser = async (data) => {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/signup`, data, {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/`, data, {
         headers: {
             'Content-type': 'application/json'
         }

@@ -32,7 +32,6 @@ const createUser = asyncHandler(async (req, res) => {
 
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    console.log('zz', email, password);
 
     const user = await User.findOne({ email })
     if (user && (await user.matchPassword(password))) {
@@ -49,7 +48,21 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
+const allUsers = asyncHandler((async (req, res) => {
+    const keyword = req.query.search ? {
+        $or: [
+            { name: { $regex: req.query.search, $options: 'i' } },
+            { email: { $regex: req.query.search, $options: 'i' } }
+        ]
+    } : {
+
+    }
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } })
+    res.send(users)
+}))
+
 module.exports = {
     createUser,
-    authUser
+    authUser,
+    allUsers
 }

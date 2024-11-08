@@ -25,9 +25,9 @@ const Login = () => {
         }
 
         try {
-            const userData = { email, password }
-            const { data } = await UserService.signInUser(userData)
-
+            const userData = { email, password };
+            const data = await UserService.signInUser(userData);
+            localStorage.setItem('userInfo', JSON.stringify(data));
             toast({
                 title: 'Sign in successful',
                 status: 'success',
@@ -35,8 +35,6 @@ const Login = () => {
                 isClosable: true,
                 position: 'top-right'
             })
-
-            localStorage.setItem('userInfo', JSON.stringify(data))
 
             setLoading(false)
             navigate('/chats')
