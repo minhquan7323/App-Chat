@@ -6,8 +6,6 @@ const accessChat = asyncHandler((async (req, res) => {
     const { userId } = req.body
 
     if (!userId) {
-        console.log('User id param not sent with request');
-
         return res.sendStatus(400)
     }
     var isChat = await Chat.find({
@@ -60,7 +58,7 @@ const fetchChats = asyncHandler((async (req, res) => {
             })
     } catch (error) {
         res.status(400)
-        throw new Error(err.message)
+        throw new Error(error.message)
     }
 }))
 

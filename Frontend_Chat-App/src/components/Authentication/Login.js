@@ -25,9 +25,9 @@ const Login = () => {
         }
 
         try {
-            const userData = { email, password };
-            const data = await UserService.signInUser(userData);
-            localStorage.setItem('userInfo', JSON.stringify(data));
+            const userData = { email, password }
+            const data = await UserService.signInUser(userData)
+            localStorage.setItem('userInfo', JSON.stringify(data))
             toast({
                 title: 'Sign in successful',
                 status: 'success',

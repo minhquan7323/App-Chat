@@ -8,10 +8,10 @@ const ChatModel = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }],
-        lastMessage: [{
+        latestMessage: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Message'
-        }],
+        },
         groupAdmin: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'

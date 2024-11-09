@@ -17,3 +17,13 @@ export const signInUser = async (data) => {
     })
     return res.data
 }
+
+export const searchUser = async (search, token) => {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/user?search=${search}`, {
+        headers: {
+            'Content-type': 'application/json',
+            'token': `Bearer ${token}`
+        }
+    })
+    return res.data
+}

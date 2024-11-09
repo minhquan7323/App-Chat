@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import { ChatState } from "../context/ChatProvider";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
-import MyChats from "../components/miscellaneous/MyChats";
-import ChatBox from "../components/miscellaneous/ChatBox";
+import MyChats from "../components/MyChats";
+import ChatBox from "../components/ChatBox";
 
 const ChatsPage = () => {
     const { user } = ChatState() || {}
@@ -10,7 +10,9 @@ const ChatsPage = () => {
     return (
         <div style={{ width: '100%' }}>
             {user && <SideDrawer />}
-            <Box>
+            <Box
+                display='flex' justifyContent='space-between' w='100%' p='10px'
+            >
                 {user && <MyChats />}
                 {user && <ChatBox />}
             </Box>
