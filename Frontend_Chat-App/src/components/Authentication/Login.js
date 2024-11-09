@@ -10,13 +10,19 @@ const Login = () => {
     const toast = useToast()
     const navigate = useNavigate()
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submitHandler()
+        }
+    }
+
     const submitHandler = async () => {
         setLoading(true)
         if (!email || !password) {
             toast({
                 title: 'Please fill all the fields',
                 status: 'warning',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -31,7 +37,7 @@ const Login = () => {
             toast({
                 title: 'Sign in successful',
                 status: 'success',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -43,7 +49,7 @@ const Login = () => {
                 title: 'Error occurred',
                 description: error.response.data.message,
                 status: 'error',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -63,7 +69,7 @@ const Login = () => {
                 toast({
                     title: 'Sign in successful',
                     status: 'success',
-                    duration: 3000,
+                    duration: 2000,
                     isClosable: true,
                     position: 'top-right'
                 })
@@ -76,7 +82,7 @@ const Login = () => {
                     title: 'Error occurred',
                     description: error.response.data.message,
                     status: 'error',
-                    duration: 3000,
+                    duration: 2000,
                     isClosable: true,
                     position: 'top-right'
                 })
@@ -92,6 +98,7 @@ const Login = () => {
                     placeholder='Enter your email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
             </FormControl>
             <FormControl id='password' isRequired>
@@ -101,6 +108,7 @@ const Login = () => {
                     placeholder='Enter your password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
             </FormControl>
             <Button

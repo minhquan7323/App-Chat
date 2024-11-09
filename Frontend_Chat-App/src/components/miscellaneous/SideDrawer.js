@@ -30,7 +30,7 @@ const SideDrawer = () => {
             toast({
                 title: 'Please enter something to search',
                 status: 'warning',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -46,7 +46,7 @@ const SideDrawer = () => {
                 title: 'Error occurred',
                 description: 'Failed to load the search results',
                 status: 'error',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -71,7 +71,7 @@ const SideDrawer = () => {
                 title: 'Error fetching the chat',
                 description: error.message,
                 status: 'error',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -86,7 +86,7 @@ const SideDrawer = () => {
                 bg='white'
                 w='100%'
                 p='5px 10px'
-                borderWidth='5px'
+                borderBottomWidth='5px'
             >
                 {/* <Tooltip label='Search user' hasArrow placement='bottom'> */}
                 <Button variant='ghost' onClick={onOpen}>
@@ -99,26 +99,28 @@ const SideDrawer = () => {
                 <Text fontSize='2xl'>
                     Chat App
                 </Text>
-                <Menu>
-                    <MenuButton p={1}>
-                        <BellIcon fontSize='2xl' m={1} />
-                    </MenuButton>
-                    <MenuList>
+                <div>
+                    <Menu>
+                        <MenuButton p={1}>
+                            <BellIcon fontSize='2xl' m={1} />
+                        </MenuButton>
+                        {/* <MenuList>
 
-                    </MenuList>
-                </Menu>
-                <Menu>
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                        <Avatar size='sm' cursor='pointer' name={user.name} src={user.avatar} />
-                    </MenuButton>
-                    <MenuList>
-                        <ProfileModal user={user}>
-                            <MenuItem>My profile</MenuItem>
-                        </ProfileModal>
-                        <MenuDivider />
-                        <MenuItem onClick={logoutHandler}>Log out</MenuItem>
-                    </MenuList>
-                </Menu>
+                    </MenuList> */}
+                    </Menu>
+                    <Menu>
+                        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                            <Avatar size='sm' cursor='pointer' name={user.name} src={user.avatar} />
+                        </MenuButton>
+                        <MenuList>
+                            <ProfileModal user={user}>
+                                <MenuItem>My profile</MenuItem>
+                            </ProfileModal>
+                            <MenuDivider />
+                            <MenuItem onClick={logoutHandler}>Log out</MenuItem>
+                        </MenuList>
+                    </Menu>
+                </div>
             </Box>
             <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />

@@ -5,6 +5,7 @@ import * as ChatService from '../services/ChatService'
 import { AddIcon } from '@chakra-ui/icons'
 import ChatLoaing from './ChatLoaing'
 import { getSender } from '../config/ChatLogics'
+import GroupChatModal from './miscellaneous/GroupChatModal'
 
 const MyChats = () => {
     const [loggedUser, setLoggedUser] = useState()
@@ -21,7 +22,7 @@ const MyChats = () => {
                 title: 'Error occured!',
                 description: 'Failed to load the chats',
                 status: 'error',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -53,13 +54,15 @@ const MyChats = () => {
                 w='100%'
             >
                 My Chats
-                <Button
-                    d='flex'
-                    fontSize={{ base: '14px', md: '14px', lg: '17px' }}
-                    rightIcon={<AddIcon />}
-                >
-                    New Group
-                </Button>
+                <GroupChatModal>
+                    <Button
+                        d='flex'
+                        fontSize={{ base: '14px', md: '14px', lg: '17px' }}
+                        rightIcon={<AddIcon />}
+                    >
+                        New Group
+                    </Button>
+                </GroupChatModal>
             </Box>
             <Box
                 display='flex'

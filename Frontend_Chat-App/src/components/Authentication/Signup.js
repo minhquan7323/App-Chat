@@ -17,7 +17,7 @@ const Signup = ({ setSelectedTab }) => {
     //         toast({
     //             title: 'Please select an image!',
     //             status: 'warning',
-    //             duration: 3000,
+    //             duration: 2000,
     //             isClosable: true,
     //             position: 'top-right'
     //         })
@@ -46,7 +46,7 @@ const Signup = ({ setSelectedTab }) => {
     //         toast({
     //             title: 'Image must be jpeg or png',
     //             status: 'warning',
-    //             duration: 3000,
+    //             duration: 2000,
     //             isClosable: true,
     //             position: 'top-right'
     //         })
@@ -61,7 +61,7 @@ const Signup = ({ setSelectedTab }) => {
             toast({
                 title: 'Please fill all the fields',
                 status: 'warning',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -73,7 +73,7 @@ const Signup = ({ setSelectedTab }) => {
             toast({
                 title: 'Passwords do not match',
                 status: 'warning',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -88,7 +88,7 @@ const Signup = ({ setSelectedTab }) => {
             toast({
                 title: 'Sign up successful',
                 status: 'success',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -102,7 +102,7 @@ const Signup = ({ setSelectedTab }) => {
                 title: 'Error occurred',
                 description: error.response.data.message,
                 status: 'error',
-                duration: 3000,
+                duration: 2000,
                 isClosable: true,
                 position: 'top-right'
             })
@@ -110,6 +110,11 @@ const Signup = ({ setSelectedTab }) => {
         }
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submitHandler()
+        }
+    }
 
     const isError = password === '' || email === '' || name === '' || confirmPassword === ''
 
@@ -117,19 +122,37 @@ const Signup = ({ setSelectedTab }) => {
         <VStack spacing='10px'>
             <FormControl id='name' isRequired>
                 <FormLabel mb='0'>Name</FormLabel>
-                <Input placeholder='Enter your name' onChange={(e) => setName(e.target.value)} />
+                <Input
+                    placeholder='Enter your name'
+                    onChange={(e) => setName(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                />
             </FormControl>
             <FormControl id='email' isRequired>
                 <FormLabel mb='0'>Email</FormLabel>
-                <Input placeholder='Enter your email' onChange={(e) => setEmail(e.target.value)} />
+                <Input
+                    placeholder='Enter your email'
+                    onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                />
             </FormControl>
             <FormControl id='password' isRequired>
                 <FormLabel mb='0'>Password</FormLabel>
-                <Input type='password' placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)} />
+                <Input
+                    type='password'
+                    placeholder='Enter your password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                />
             </FormControl>
             <FormControl id='confirmPassword' isRequired>
                 <FormLabel mb='0'>Confirm password</FormLabel>
-                <Input type='password' placeholder='Enter your confirm password' onChange={(e) => setConfirmPassword(e.target.value)} />
+                <Input
+                    type='password'
+                    placeholder='Enter your confirm password'
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                />
             </FormControl>
             {/* <FormControl id='Avatar' isRequired>
                 <FormLabel mb='0'>Upload your avatar</FormLabel>

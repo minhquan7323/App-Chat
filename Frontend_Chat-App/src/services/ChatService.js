@@ -18,3 +18,13 @@ export const fetchChats = async (token) => {
     })
     return res.data
 }
+
+export const groupChat = async (name, users, token) => {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/chat/group`, { name, users }, {
+        headers: {
+            'token': `Bearer ${token}`
+        }
+    })
+    return res.data
+}
+
