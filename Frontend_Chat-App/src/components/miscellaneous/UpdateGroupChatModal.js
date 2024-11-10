@@ -7,7 +7,7 @@ import * as ChatService from '../../services/ChatService'
 import * as UserService from '../../services/UserService'
 import UserListItem from '../UserAvatar/UserListItem'
 
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     const { isOpen, onClose, onOpen } = useDisclosure()
     const { user, selectedChat, setSelectedChat } = ChatState()
     const [groupChatName, setGroupChatName] = useState()
@@ -34,6 +34,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
             const { data } = await ChatService.removeChat(selectedChat._id, userRemove._id, user?.token)
             userRemove._id === user._id ? setSelectedChat() : setSelectedChat(data)
             setFetchAgain(!fetchAgain)
+            fetchMessages()
             setLoading(false)
         } catch (error) {
             toast({
@@ -145,7 +146,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
         <>
             <IconButton
                 display={{ base: 'flex' }}
-                icon={<ViewIcon />}
+                icon=<i className="fa-solid fa-ellipsis-vertical"></i>
                 onClick={onOpen}
             />
             <Modal size='lg' isOpen={isOpen} onClose={onClose} isCentered>

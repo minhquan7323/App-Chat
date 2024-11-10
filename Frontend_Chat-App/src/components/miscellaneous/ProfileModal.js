@@ -12,7 +12,8 @@ const ProfileModal = ({ user, children }) => {
             ) : (
                 <IconButton
                     display={{ base: 'flex' }}
-                    icon={<ViewIcon />}
+                    icon=<i className="fa-solid fa-ellipsis-vertical"></i>
+                    // icon={<ViewIcon />}
                     onClick={onOpen}
                 />
             )}

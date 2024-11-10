@@ -9,7 +9,8 @@ import GroupChatModal from './miscellaneous/GroupChatModal'
 
 const MyChats = ({ fetchAgain }) => {
     const [loggedUser, setLoggedUser] = useState()
-    const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState()
+
+    const { user, selectedChat, setSelectedChat, chats, setChats, notification, setNotification } = ChatState()
 
     const toast = useToast()
 
@@ -19,7 +20,7 @@ const MyChats = ({ fetchAgain }) => {
             setChats(data)
         } catch (error) {
             toast({
-                title: 'Error occured!',
+                title: 'Error occurred!',
                 description: 'Failed to load the chats',
                 status: 'error',
                 duration: 2000,
@@ -33,6 +34,7 @@ const MyChats = ({ fetchAgain }) => {
         setLoggedUser(JSON.parse(localStorage.getItem('userInfo')))
         fetchChats()
     }, [fetchAgain])
+
     return (
         <Box
             display={{ base: selectedChat ? 'none' : 'flex', md: 'flex' }}
@@ -75,18 +77,25 @@ const MyChats = ({ fetchAgain }) => {
                 overflowY='hidden'
             >
                 {chats ? (
-                    <Stack overflowY='scroll'>
+                    <Stack overflowY="scroll">
                         {chats.map((chat) => {
+                            const isNotified = notification && notification.some((notif) => notif.chat._id === chat._id)
+
                             return (
                                 <Box
-                                    onClick={() => setSelectedChat(chat)}
                                     cursor="pointer"
-                                    bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                                    bg={selectedChat === chat ? "#38B2AC" : isNotified ? "#C0EBA6" : "#E8E8E8"}
                                     color={selectedChat === chat ? "white" : "black"}
                                     px={3}
                                     py={2}
                                     borderRadius="lg"
                                     key={chat._id}
+                                    onClick={() => {
+                                        setSelectedChat(chat)
+                                        if (isNotified) {
+                                            setNotification(notification.filter((notif) => notif.chat._id !== chat._id))
+                                        }
+                                    }}
                                 >
                                     <Text>
                                         {!chat.isGroupChat
@@ -94,7 +103,6 @@ const MyChats = ({ fetchAgain }) => {
                                             : chat.chatName}
                                     </Text>
                                 </Box>
-
                             )
                         })}
                     </Stack>
@@ -103,7 +111,6 @@ const MyChats = ({ fetchAgain }) => {
                 )}
             </Box>
         </Box>
-
     )
 }
 
