@@ -25,6 +25,7 @@ const SideDrawer = () => {
     }
 
     const toast = useToast()
+
     const handleSearch = async () => {
         if (!search) {
             toast({

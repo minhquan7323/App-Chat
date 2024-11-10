@@ -1,11 +1,14 @@
-import { Box } from "@chakra-ui/react";
-import { ChatState } from "../context/ChatProvider";
-import SideDrawer from "../components/miscellaneous/SideDrawer";
-import MyChats from "../components/MyChats";
-import ChatBox from "../components/ChatBox";
+import { Box } from "@chakra-ui/react"
+import { ChatState } from "../context/ChatProvider"
+import SideDrawer from "../components/miscellaneous/SideDrawer"
+import MyChats from "../components/MyChats"
+import ChatBox from "../components/ChatBox"
+import { useState } from "react"
 
 const ChatsPage = () => {
-    const { user } = ChatState() || {}
+    const { user } = ChatState()
+    const [fetchAgain, setFetchAgain] = useState(false)
+
 
     return (
         <div style={{ width: '100%' }}>
@@ -13,11 +16,15 @@ const ChatsPage = () => {
             <Box
                 display='flex' justifyContent='space-between' w='100%' p='10px'
             >
-                {user && <MyChats />}
-                {user && <ChatBox />}
+                {user && (
+                    <MyChats fetchAgain={fetchAgain} />
+                )}
+                {user && (
+                    <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+                )}
             </Box>
         </div>
-    );
-};
+    )
+}
 
-export default ChatsPage;
+export default ChatsPage
