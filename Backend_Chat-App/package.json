@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon src/server.js",
     "server": "nodemon src/server.js",
-    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix Frontend_Chat-App && npm run build --prefix Frontend_Chat-App"
+    "build": "npm install --legacy-peer-deps && cd Frontend_Chat-App && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
