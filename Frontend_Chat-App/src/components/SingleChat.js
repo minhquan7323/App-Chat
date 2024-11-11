@@ -14,7 +14,7 @@ import animationData from '../animations/typing.json'
 
 var socket, selectedChatCompare
 
-const SignleChat = ({ fetchAgain, setFetchAgain }) => {
+const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState()
     const [loading, setLoading] = useState(false)
@@ -69,17 +69,17 @@ const SignleChat = ({ fetchAgain, setFetchAgain }) => {
     }, [selectedChat])
 
     useEffect(() => {
-        socket.on('message recieved', (newMessageRecieved) => {
-            if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
-                if (!notification.find((notif) => notif._id === newMessageRecieved._id)) {
-                    setNotification([newMessageRecieved, ...notification])
+        socket.on('message recieved', (newMessageReceived) => {
+            if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id) {
+                if (!notification.find((notif) => notif._id === newMessageReceived._id)) {
+                    setNotification([newMessageReceived, ...notification])
                     setFetchAgain(!fetchAgain)
                 }
             } else {
                 setMessages((prevMessages) => {
-                    const isDuplicate = prevMessages.some(msg => msg._id === newMessageRecieved._id)
+                    const isDuplicate = prevMessages.some(msg => msg._id === newMessageReceived._id)
                     if (!isDuplicate) {
-                        return [...prevMessages, newMessageRecieved]
+                        return [...prevMessages, newMessageReceived]
                     }
                     return prevMessages
                 })
@@ -176,6 +176,7 @@ const SignleChat = ({ fetchAgain, setFetchAgain }) => {
                                 </Text>
                                 {/* {selectedChat.chatName.toUpperCase()} */}
                                 <UpdateGroupChatModal
+                                    fetchMessages={fetchMessages}
                                     fetchAgain={fetchAgain}
                                     setFetchAgain={setFetchAgain}
                                 />
@@ -244,4 +245,4 @@ const SignleChat = ({ fetchAgain, setFetchAgain }) => {
     )
 }
 
-export default SignleChat
+export default SingleChat

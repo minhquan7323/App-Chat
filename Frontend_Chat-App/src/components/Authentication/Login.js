@@ -59,35 +59,35 @@ const Login = () => {
 
     const isError = !email || !password
 
-    const handleGuestLogin = () => {
+    const handleGuestLogin = async () => {
         setLoading(true)
         const guestEmail = 'guest@gmail.com'
         const guestPassword = 'guest@gmail.com'
+        try {
+            const userData = { email: guestEmail, password: guestPassword }
+            const data = await UserService.signInUser(userData)
+            localStorage.setItem('userInfo', JSON.stringify(data))
+            toast({
+                title: 'Sign in successful',
+                status: 'success',
+                duration: 2000,
+                isClosable: true,
+                position: 'top-right'
+            })
 
-        UserService.signInUser({ email: guestEmail, password: guestPassword })
-            .then((response) => {
-                toast({
-                    title: 'Sign in successful',
-                    status: 'success',
-                    duration: 2000,
-                    isClosable: true,
-                    position: 'top-right'
-                })
-                localStorage.setItem('userInfo', JSON.stringify(response.data))
-                navigate('/chats')
-                setLoading(false)
+            setLoading(false)
+            navigate('/chats')
+        } catch (error) {
+            toast({
+                title: 'Error occurred',
+                description: error.response.data.message,
+                status: 'error',
+                duration: 2000,
+                isClosable: true,
+                position: 'top-right'
             })
-            .catch((error) => {
-                toast({
-                    title: 'Error occurred',
-                    description: error.response.data.message,
-                    status: 'error',
-                    duration: 2000,
-                    isClosable: true,
-                    position: 'top-right'
-                })
-                setLoading(false)
-            })
+            setLoading(false)
+        }
     }
 
     return (

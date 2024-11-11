@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "server": "nodemon src/server.js",
+    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix Frontend_Chat-App && npm run build --prefix Frontend_Chat-App"
   },
   "author": "",
   "license": "ISC",
