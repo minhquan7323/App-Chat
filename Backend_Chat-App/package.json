@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/server.js",
-    "server": "nodemon src/server.js",
-    "build": "npm install --force && npm install --force --prefix ../Frontend_Chat-App && npm run build --prefix ../Frontend_Chat-App"
+    "start": "nodemon src/server.js"
   },
   "author": "",
   "license": "ISC",
