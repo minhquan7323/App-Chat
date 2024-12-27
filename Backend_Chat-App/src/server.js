@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const connectDB = require('./config/database')
 const routes = require('./routes')
-const { notFound, ErrorHandler } = require('./middleware/ErrorMiddleware.js')
+const { notFound, ErrorHandler } = require('./middleware/ErrorMiddleware2.js')
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 5000
