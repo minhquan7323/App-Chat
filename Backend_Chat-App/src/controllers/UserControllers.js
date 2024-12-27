@@ -61,8 +61,46 @@ const allUsers = asyncHandler((async (req, res) => {
     res.send(users)
 }))
 
+const updateUser = asyncHandler(async (req, res) => {
+    const { id } = req.params // Lấy ID người dùng từ URL
+    const { avatarUrl } = req.body // Lấy URL avatar từ request body
+
+    if (!avatarUrl) {
+        res.status(400)
+        throw new Error('Avatar URL is required')
+    }
+
+    // Tìm người dùng trong cơ sở dữ liệu
+    const user = await User.findById(id)
+    if (!user) {
+        res.status(404)
+        throw new Error('User not found')
+    }
+
+    // Cập nhật avatar mới
+    user.avatar = avatarUrl
+    const updatedUser = await user.save()  // Lưu người dùng mới với avatar đã cập nhật
+
+    if (updatedUser) {
+        console.log("Avatar updated:", updatedUser.avatar)  // Log avatar mới
+        res.json({
+            message: 'Avatar updated successfully',
+            user: {
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                avatar: updatedUser.avatar,
+            },
+        })
+    } else {
+        res.status(400)
+        throw new Error('Failed to update avatar')
+    }
+})
+
 module.exports = {
     createUser,
     authUser,
-    allUsers
+    allUsers,
+    updateUser
 }

@@ -27,3 +27,13 @@ export const searchUser = async (search, token) => {
     })
     return res.data
 }
+
+export const updateUser = async (id, data, token) => {
+    const res = await axios.put(`${process.env.REACT_APP_API_URL}/user/update/${id}`, data, {
+        headers: {
+            'Content-type': 'application/json',
+            'token': `Bearer ${token}`
+        }
+    })
+    return res.data
+}
