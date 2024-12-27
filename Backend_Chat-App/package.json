@@ -21,6 +21,11 @@
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.0",
     "nodemon": "^3.1.7",
+    "react-scripts": "^5.0.1",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "babel-preset-react-app": "^10.0.1"
   }
 }
