@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.26.0",
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.10.3",
     "@emotion/react": "^11.13.3",
@@ -53,7 +52,9 @@
     "proxy": "http://127.0.0.1:5000/"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.26.0",
     "babel-preset-react-app": "^10.0.1",
     "terser-webpack-plugin": "^5.3.11"
   }
